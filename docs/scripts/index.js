@@ -4,16 +4,11 @@ The following URL will help you to do this:
 https://www.javascript-coder.com/javascript-form/getelementbyid-form/
 */
 
-
-
 /*
 Also store the tdCost id element as a variable.
 The following link will help you to do this:
 https://www.w3schools.com/jsref/met_document_getelementbyid.asp
 */
-
-
-
 
 /*
 select the "Calculate Cost" and "Reset" buttons by
@@ -25,8 +20,6 @@ The links below will help you to do this:
 https://www.w3schools.com/js/js_htmldom_document.asp
 https://www.w3schools.com/jsref/event_onclick.asp
 */
-
-
 
 /*
 Create a function that calculates the surface area.
@@ -43,8 +36,6 @@ https://www.w3schools.com/js/js_functions.asp
 https://www.w3schools.com/jsref/jsref_isNaN.asp
 */
 
-
-
 /*
 Create a function that calculates the length of the edges
 and returns the result.
@@ -55,8 +46,6 @@ At the beginning of your function get the value of each variable you
 created at the beginning of your program and store each value as a new variable.
 https://www.javascript-coder.com/javascript-form/getelementbyid-form/
 */
-
-
 
 /*
 create a function that stores the results of the previous functions
@@ -72,8 +61,6 @@ You can use the URL below to help you do this:
 https://www.w3schools.com/jsref/jsref_tofixed.asp
 */
 
-
-
 /*
 Create a function named resetInputs to reset the inputs (Length, Width, Height).
 Use this link to help https://www.w3schools.com/js/tryit.asp?filename=tryjs_form_reset
@@ -81,4 +68,3 @@ Use this link to help https://www.w3schools.com/js/tryit.asp?filename=tryjs_form
 Also reset the output (tdCost). Use this link to help you do this
 https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_innerhtml_delete
 */
-
