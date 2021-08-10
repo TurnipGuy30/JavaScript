@@ -1,14 +1,27 @@
+
+alert('js running')
+
+in_progress = funtion() {
+	alert('This page is in progress.')
+};
+
 /*
 Access the form element using the method getElementById()
 The following URL will help you to do this:
 https://www.javascript-coder.com/javascript-form/getelementbyid-form/
 */
 
+var form = document.getElementById('inputs');
+
+
 /*
 Also store the tdCost id element as a variable.
 The following link will help you to do this:
 https://www.w3schools.com/jsref/met_document_getelementbyid.asp
 */
+
+var tdCost = document.getElementById('tdCost');
+
 
 /*
 select the "Calculate Cost" and "Reset" buttons by
