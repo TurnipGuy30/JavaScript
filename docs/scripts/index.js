@@ -34,6 +34,10 @@ https://www.w3schools.com/js/js_htmldom_document.asp
 https://www.w3schools.com/jsref/event_onclick.asp
 */
 
+var calc = document.getelementbyid('btnCalcCost');
+var reset = document.getelementbyid('btnReset');
+
+
 /*
 Create a function that calculates the surface area.
 
