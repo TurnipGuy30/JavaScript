@@ -3,4 +3,4 @@
 Available via:
 * [Raw Code](https://github.com/TurnipGuy30/JavaScript/tree/main/docs)
 * [GitHub Pages](https://turnipguy30.github.io/JavaScript)
-###### 🏱︎🕆︎☪︎☪︎☹︎☜︎
+###### ✌︎👌︎⚐︎🕆︎❄︎
