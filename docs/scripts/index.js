@@ -72,9 +72,11 @@ in_progress = funtion() {
 };
 
 // Variables for costs, used in calculations
-glueCost = 0.1;// $/cm
+glue = 0.1;// $/cm
 glass4mm = 0.06;// $/cm^2
 glass6mm = 0.1;// $/cm^2
+labour = 100;// $/hr
+gst = 0.1;// decimal, not percentage
 
 // Take <form> and output <p> by IDs and store
 var form = document.getElementById('inputs');
@@ -85,9 +87,9 @@ var calc = document.getelementbyid('btnCalcCost');
 var reset = document.getelementbyid('btnReset');
 
 // Take form elements by IDs and store
-depth = form.txtdepth;
-width = form.txtWidth;
-height = form.txtHeight;
+depth = Number(form.txtdepth);
+width = Number(form.txtWidth);
+height = Number(form.txtHeight);
 
 // Functions to return various calculations, calcGlue does NOT glue around the lid.
 var calcSurface = function(d, w, h) {
@@ -104,7 +106,7 @@ var calcGlue = function(d, w, h) {
 
 // When "Calculate Cost" is clicked
 calc.onclick = {
-	if ((depth.isNaN) || (width.isNaN) || (height.isNaN)) {
+	if (isNaN(depth) || isNaN(width) || isNaN(height)) {
 		alert("Please fill out all fields.");
 	} else if ((depth <= 10) || (width <= 10) || (height <= 10)) {
 		alert("Please enter values larger than 10.");
@@ -118,13 +120,18 @@ calc.onclick = {
 			surfaceCost = surface * glass4mm;
 			thickness = "4mm";
 		};
-		//
+		glueCost = calcGlue(depth, width, height) * glue;
+		labourCost = surface / labour;
+		subtotal = surfaceCost + glueCost + labourCost;
+		total = (subtotal * gst).toFixed(2);
+		tdCost.innerHTML = "Surface Area: " + surface + "cm<sup>2</sup><br>Cost: $" + total;
 	};
 };
 
 // When "Reset" is clicked, reset form and output
 reset.onclick = {
-	depth.reset();
-	width.reset();
-	height.reset();
+	depth.value = "";
+	width.value = "";
+	height.value = "";
+	tdCost.innerHTML = "";
 };
