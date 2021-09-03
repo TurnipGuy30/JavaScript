@@ -64,48 +64,53 @@ https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_innerhtml_de
 */
 
 // Test if JS is running
-alert('js running');
+var test = function() {
+	alert("JS working!")
+};
+test();
 
 // Alert if page is non-existent
-in_progress = funtion() {
+var page = function() {
 	alert('This page is in progress.')
 };
 
 // Variables for costs, used in calculations
-glue = 0.1;// $/cm
-glass4mm = 0.06;// $/cm^2
-glass6mm = 0.1;// $/cm^2
-labour = 100;// $/hr
-gst = 0.1;// decimal, not percentage
+var glue = 0.1;// $/cm
+var glass4mm = 0.06;// $/cm^2
+var glass6mm = 0.1;// $/cm^2
+var labour = 100;// $/hr
+var gst = 0.1;// decimal, not percentage
 
 // Take <form> and output <p> by IDs and store
 var form = document.getElementById('inputs');
-var tdCost = document.getElementById('tdCost');
+var output = document.getElementById('tdCost');
 
 // Take <button> tags by IDs and store
-var calc = document.getelementbyid('btnCalcCost');
-var reset = document.getelementbyid('btnReset');
+var btnCalcCost = document.getelementbyid('btnCalcCost');
+var btnReset = document.getelementbyid('btnReset');
 
 // Take form elements by IDs and store
-depth = Number(form.txtdepth);
-width = Number(form.txtWidth);
-height = Number(form.txtHeight);
+depth = form.txtdepth;
+width = form.txtWidth;
+height = form.txtHeight;
 
-// Functions to return various calculations, calcGlue does NOT glue around the lid.
-var calcSurface = function(d, w, h) {
+// Functions to return various calculations, calcGlue does NOT glue around the lid
+function calcSurfaceArea (d, w, h) {
 	sides = 2 * self.h * self.d;
 	ends = 2 * self.d * self.w;
 	faces = 2 * self.w * self.h;
 	total = sides + ends + faces;
 	return total;
 };
-var calcGlue = function(d, w, h) {
+function calcGlueCost(d, w, h) {
 	total = (2 * self.d) + (2 * self.w) + (4 * self.h);
 	return total;
 };
+var calcSurface = calcSurfaceArea();
+var calcGlue = calcGlueCost();
 
-// When "Calculate Cost" is clicked
-calc.onclick = {
+// Complete calculation function
+var calc = function() {
 	if (isNaN(depth) || isNaN(width) || isNaN(height)) {
 		alert("Please fill out all fields.");
 	} else if ((depth <= 10) || (width <= 10) || (height <= 10)) {
@@ -124,14 +129,20 @@ calc.onclick = {
 		labourCost = surface / labour;
 		subtotal = surfaceCost + glueCost + labourCost;
 		total = (subtotal * gst).toFixed(2);
-		tdCost.innerHTML = "Surface Area: " + surface + "cm<sup>2</sup><br>Cost: $" + total;
+		// TODO: calculate capacity
+		document.getElementById("tdCost").innerHTML = "Surface Area: " + surface + "cm<sup>2</sup><br>Cost: $" + total;
 	};
 };
 
+/*
+// When "Calculate Cost" is clicked
+document.getelementbyid('btnCalcCost').onclick = funtion() {calc()};
+
 // When "Reset" is clicked, reset form and output
-reset.onclick = {
+btnReset.onclick = function() {
 	depth.value = "";
 	width.value = "";
 	height.value = "";
 	tdCost.innerHTML = "";
 };
+*/

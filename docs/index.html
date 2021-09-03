@@ -13,8 +13,8 @@
 
 	<ul class="topnav">
 		<li><a class="active">Home</a></li>
-		<li><a onclick="in_progress()">News</a></li>
-		<li><a onclick="in_progress()">Contact</a></li>
+		<li><a onclick="page()">News</a></li>
+		<li><a onclick="page()">Contact</a></li>
 		<li><a href="https://github.com/TurnipGuy30/JavaScript" target="_blank">This Repo</a></li>
 		<li class="right"><a href="about.html">About</a></li>
 	</ul>
@@ -32,7 +32,7 @@
 		<form id="inputs">
 			<table>
 				<tr>
-					<td><label for="Depth">Depth (cm)</label></td>
+					<td><label for="depth">Depth (cm)</label></td>
 					<td><input type="text" id="txtDepth" /></td>
 				</tr>
 				<tr>
@@ -50,6 +50,7 @@
 
 		<button id="btnCalcCost">Calculate Cost</button>
 		<button id="btnReset">Reset</button>
+		<button onclick="test()">Test JS</button>
 
 	</div>
 
