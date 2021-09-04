@@ -1,12 +1,12 @@
 /*
 Access the form element using the method getElementById()
 The following URL will help you to do this:
-https://www.javascript-coder.com/javascript-form/getelementbyid-form/
+https://www.javascript-coder.com/javascript-form/getElementById-form/
 */
 /*
 Also store the tdCost id element as a variable.
 The following link will help you to do this:
-https://www.w3schools.com/jsref/met_document_getelementbyid.asp
+https://www.w3schools.com/jsref/met_document_getElementById.asp
 */
 /*
 select the "Calculate Cost" and "Reset" buttons by
@@ -23,7 +23,7 @@ Create a function that calculates the surface area.
 
 Get the value of each variable you created at the beginning
 and store each value as a new variable.
-https://www.javascript-coder.com/javascript-form/getelementbyid-form/
+https://www.javascript-coder.com/javascript-form/getElementById-form/
 
 Test whether the user has entered a number in
 the text boxes and return an alert if non-numbers are entered. If
@@ -40,7 +40,7 @@ https://www.w3schools.com/js/js_functions.asp
 
 At the beginning of your function get the value of each variable you
 created at the beginning of your program and store each value as a new variable.
-https://www.javascript-coder.com/javascript-form/getelementbyid-form/
+https://www.javascript-coder.com/javascript-form/getElementById-form/
 */
 /*
 create a function that stores the results of the previous functions
@@ -63,61 +63,76 @@ Also reset the output (tdCost). Use this link to help you do this
 https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_innerhtml_delete
 */
 
-// Test if JS is running
+// Test if JS is running when
 var test = function() {
-	alert("JS working!")
+	alert("JS loaded!");
 };
-test();
 
 // Alert if page is non-existent
 var page = function() {
-	alert('This page is in progress.')
+	alert("This page is in progress.");
 };
 
+/*
+// Declare measurement variables
+var depth;
+var width;
+var height;
+*/
+
 // Variables for costs, used in calculations
-var glue = 0.1;// $/cm
-var glass4mm = 0.06;// $/cm^2
-var glass6mm = 0.1;// $/cm^2
-var labour = 100;// $/hr
-var gst = 0.1;// decimal, not percentage
+var glue = 0.1; // $/cm
+var glass4mm = 0.06; // $/cm^2
+var glass6mm = 0.1; // $/cm^2
+var labour = 100; // $/hr
+var gst = 0.1; // decimal, not percentage
+var smallest = 50; // smallest value each dimension can be
 
 // Take <form> and output <p> by IDs and store
-var form = document.getElementById('inputs');
-var output = document.getElementById('tdCost');
+var form = document.getElementById("inputs");
+var output = document.getElementById("tdCost");
 
 // Take <button> tags by IDs and store
-var btnCalcCost = document.getelementbyid('btnCalcCost');
-var btnReset = document.getelementbyid('btnReset');
-
-// Take form elements by IDs and store
-depth = form.txtdepth;
-width = form.txtWidth;
-height = form.txtHeight;
+var btnCalcCost = document.getElementById("btnCalcCost");
+var btnReset = document.getElementById("btnReset");
 
 // Functions to return various calculations, calcGlue does NOT glue around the lid
 function calcSurfaceArea (d, w, h) {
-	sides = 2 * self.h * self.d;
-	ends = 2 * self.d * self.w;
-	faces = 2 * self.w * self.h;
+	sides = 2 * h * d;
+	ends = 2 * d * w;
+	faces = 2 * w * h;
 	total = sides + ends + faces;
 	return total;
 };
 function calcGlueCost(d, w, h) {
-	total = (2 * self.d) + (2 * self.w) + (4 * self.h);
+	total = (2 * d) + (2 * w) + (4 * h);
 	return total;
 };
 var calcSurface = calcSurfaceArea();
 var calcGlue = calcGlueCost();
 
-// Complete calculation function
-var calc = function() {
-	if (isNaN(depth) || isNaN(width) || isNaN(height)) {
-		alert("Please fill out all fields.");
-	} else if ((depth <= 10) || (width <= 10) || (height <= 10)) {
-		alert("Please enter values larger than 10.");
-	// TODO: else if dimensions too big, give alert
-	} else {
-		surface = calcSurface(depth, width, height);
+// When "Calculate Cost" is clicked
+btnCalcCost.onclick = function() {
+
+	// Take form elements by IDs and store
+	var depth = document.getElementById("txtDepth").value;
+	var width = document.getElementById("txtWidth").value;
+	var height = document.getElementById("txtHeight").value;
+
+	// LFD: alert("depth="+depth+", width="+width+", height="+height);
+
+	// Check if inputs are valid numbers
+	if (! (Number.isInteger(depth) || Number.isInteger(width) || Number.isInteger(height) || depth >= smallest || width >= smallest || height >= smallest)) {
+		output.innerHTML = "Please fill out all fields with an integer larger than " + smallest + ".";
+	}
+
+	// If inputs are valid, perform calculations
+	else {
+
+		// Find surface area
+		var surface = calcSurfaceArea(depth, width, height);
+
+		// Find glass cost
 		if (height > 25) {
 			surfaceCost = surface * glass6mm;
 			thickness = "6mm";
@@ -125,24 +140,33 @@ var calc = function() {
 			surfaceCost = surface * glass4mm;
 			thickness = "4mm";
 		};
-		glueCost = calcGlue(depth, width, height) * glue;
-		labourCost = surface / labour;
-		subtotal = surfaceCost + glueCost + labourCost;
-		total = (subtotal * gst).toFixed(2);
-		// TODO: calculate capacity
-		document.getElementById("tdCost").innerHTML = "Surface Area: " + surface + "cm<sup>2</sup><br>Cost: $" + total;
+
+		// Find glue cost
+		var glueCost = calcGlueCost(depth, width, height) * glue;
+
+		// Find labour cost
+		var labourCost = surface / labour;
+
+		// Find subtotal
+		var subtotal = surfaceCost + glueCost + labourCost;
+
+		// Calculate total cost
+		var total = (subtotal * gst).toFixed(2);
+
+		// Extra: Calculate capaity in litres
+		var capacityLitres = depth * width * height / 1000;
+
+		// Extra: Calculate capacity in gallons using approximate rate
+		var capacityGallons = (capacityLitres / 3.785).toFixed(2);
+
+		// Output information to paragraph
+		// LFD: output = "depth="+depth+",width="+width+",height="+height;
+		output.innerHTML = "<strong>Total Cost: $" + Number(total) + "</strong><br>Surface Area: " + Number(surface) + " cm<sup>2</sup><br>Capacity: " + capacityLitres + " L (" + capacityGallons + " gal)";
 	};
 };
 
-/*
-// When "Calculate Cost" is clicked
-document.getelementbyid('btnCalcCost').onclick = funtion() {calc()};
-
 // When "Reset" is clicked, reset form and output
 btnReset.onclick = function() {
-	depth.value = "";
-	width.value = "";
-	height.value = "";
-	tdCost.innerHTML = "";
+	form.reset();
+	output.innerHTML = "";
 };
-*/
