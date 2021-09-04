@@ -86,7 +86,6 @@ var glass4mm = 0.06; // $/cm^2
 var glass6mm = 0.1; // $/cm^2
 var labour = 100; // $/hr
 var gst = 0.1; // decimal, not percentage
-var smallest = 50; // smallest value each dimension can be
 
 // Take <form> and output <p> by IDs and store
 var form = document.getElementById("inputs");
@@ -122,8 +121,8 @@ btnCalcCost.onclick = function() {
 	// LFD: alert("depth="+depth+", width="+width+", height="+height);
 
 	// Check if inputs are valid numbers
-	if (! (Number.isInteger(depth) || Number.isInteger(width) || Number.isInteger(height) || depth >= smallest || width >= smallest || height >= smallest)) {
-		output.innerHTML = "Please fill out all fields with an integer larger than " + smallest + ".";
+	if (! (Number.isInteger(depth) || Number.isInteger(width) || Number.isInteger(height) || depth >= 30 || width >= 30 || height >= 30)) {
+		output.innerHTML = "Please make each dimension at least 30cm.";
 	}
 
 	// If inputs are valid, perform calculations
@@ -161,7 +160,7 @@ btnCalcCost.onclick = function() {
 
 		// Output information to paragraph
 		// LFD: output = "depth="+depth+",width="+width+",height="+height;
-		output.innerHTML = "<strong>Total Cost: $" + Number(total) + "</strong><br>Surface Area: " + Number(surface) + " cm<sup>2</sup><br>Capacity: " + capacityLitres + " L (" + capacityGallons + " gal)";
+		output.innerHTML = "<strong>Total Cost: $" + Number(total) + "</strong> (incl. GST)<br>Surface Area: " + Number(surface) + " cm<sup>2</sup><br>Capacity: " + capacityLitres + " L (" + capacityGallons + " gal)";
 	};
 };
 

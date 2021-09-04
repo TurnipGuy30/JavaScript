@@ -46,3 +46,7 @@ h1 {
 	text-align: center;
 	font-size: 100px;
 }
+
+#text, li a {
+	font-family: "Comic Sans", sans-serif;
+}
