@@ -86,6 +86,7 @@ var glass4mm = 0.06; // $/cm^2
 var glass6mm = 0.1; // $/cm^2
 var labour = 100; // $/hr
 var gst = 0.1; // decimal, not percentage
+var smallest = 30; // smallest accepted input
 
 // Take <form> and output <p> by IDs and store
 var form = document.getElementById("inputs");
@@ -120,13 +121,8 @@ btnCalcCost.onclick = function() {
 
 	// LFD: alert("depth="+depth+", width="+width+", height="+height);
 
-	// Check if inputs are valid numbers
-	if (! (Number.isInteger(depth) || Number.isInteger(width) || Number.isInteger(height) || depth >= 30 || width >= 30 || height >= 30)) {
-		output.innerHTML = "Please make each dimension at least 30cm.";
-	}
-
 	// If inputs are valid, perform calculations
-	else {
+	if (depth >= smallest && width >= smallest && height >= smallest) {
 
 		// Find surface area
 		var surface = calcSurfaceArea(depth, width, height);
@@ -159,8 +155,15 @@ btnCalcCost.onclick = function() {
 		var capacityGallons = (capacityLitres / 3.785).toFixed(2);
 
 		// Output information to paragraph
-		// LFD: output = "depth="+depth+",width="+width+",height="+height;
-		output.innerHTML = "<strong>Total Cost: $" + Number(total) + "</strong> (incl. GST)<br>Surface Area: " + Number(surface) + " cm<sup>2</sup><br>Capacity: " + capacityLitres + " L (" + capacityGallons + " gal)";
+		output.innerHTML = "<strong>Total Cost: $" + Number(total) + "</strong> (incl. GST)<br>Surface Area: " + surface.toLocaleString() + " cm<sup>2</sup><br>Capacity: " + capacityLitres.toLocaleString() + " L (" + capacityGallons.toLocaleString() + " gal)";
+
+		// LFD: alert("depth="+depth+", width="+width+", height="+height);
+
+	}
+
+	// If inputs are invalid, give notice
+	else {
+		output.innerHTML = "Please make each dimension an integer of at least " + smallest + ".";
 	};
 };
 
