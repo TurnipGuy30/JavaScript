@@ -119,7 +119,7 @@ btnCalcCost.onclick = function() {
 	var width = document.getElementById("txtWidth").value;
 	var height = document.getElementById("txtHeight").value;
 
-	// LFD: alert("depth="+depth+", width="+width+", height="+height);
+	//alert("depth="+depth+", width="+width+", height="+height);
 
 	// If inputs are valid, perform calculations
 	if (depth >= smallest && width >= smallest && height >= smallest) {
@@ -155,9 +155,9 @@ btnCalcCost.onclick = function() {
 		var capacityGallons = (capacityLitres / 3.785).toFixed(2);
 
 		// Output information to paragraph
-		output.innerHTML = "<strong>Total Cost: $" + Number(total) + "</strong> (incl. GST)<br>Surface Area: " + surface.toLocaleString() + " cm<sup>2</sup><br>Capacity: " + capacityLitres.toLocaleString() + " L (" + capacityGallons.toLocaleString() + " gal)";
+		output.innerHTML = "<strong>Total Cost: $" + total + "</strong> (incl. GST)<br>Surface Area: " + surface.toLocaleString() + " cm<sup>2</sup><br>Capacity: " + capacityLitres.toLocaleString() + " L (" + capacityGallons.toLocaleString() + " gal)";
 
-		// LFD: alert("depth="+depth+", width="+width+", height="+height);
+		//alert("depth="+depth+", width="+width+", height="+height);
 
 	}
 
