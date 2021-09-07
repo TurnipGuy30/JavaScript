@@ -1,11 +1,10 @@
-<hr>
 <pre align="center">
 
 (=Start=)
 🠗
-[Declare cost variables ]
+[Declare cost variables]
 🠗
-[Store DOM links to HTML elements ]
+[Store DOM links to HTML elements]
 🠗
 |=|=Create calculation functions=|=|
 
@@ -14,13 +13,13 @@
 🠗
 [Take form values]
 🠗
-<=Are form values integers in the correct range?=>
+<=Are form values numbers in the correct range?=>
 Yes: go to (1), No: go to (2)
 
 
 (1)
 🠗
-[Perform various calculations to find required data]
+[Perform various calculations to find required data and store as variables]
 🠗
 /=Display data to output block=/
 
@@ -29,6 +28,5 @@ Yes: go to (1), No: go to (2)
 🠗
 /=Give instructions about valid inputs=/
 </pre>
-<hr>
 
-Note that there is no End block.
+Note that there is no End block, because the Calculate button can be clicked multiple times.

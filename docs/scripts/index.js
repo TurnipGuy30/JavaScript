@@ -166,7 +166,7 @@ btnCalcCost.onclick = function() {
 
 	// If inputs are invalid, give notice
 	else {
-		output.innerHTML = "Please make each dimension an integer of at least " + smallest + ".";
+		output.innerHTML = "Please make each dimension a number of at least " + smallest + ".";
 	};
 };
 
