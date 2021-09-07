@@ -1,3 +1,6 @@
 * text=auto
 * linguist-detectable=true
+*.html linguist-detectable=true linguist-language=HTML
+*.css linguist-detectable=true linguist-language=CSS
+*.js linguist-detectable=true linguist-language=JavaScript
 *.md linguist-detectable=true linguist-language=Markdown
