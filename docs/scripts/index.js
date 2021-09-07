@@ -124,15 +124,18 @@ btnCalcCost.onclick = function() {
 	// If inputs are valid, perform calculations
 	if (depth >= smallest && width >= smallest && height >= smallest) {
 
-		// Find surface area
-		var surface = calcSurfaceArea(depth, width, height);
+		// Find surface area in cm^2
+		var surfaceCm = calcSurfaceArea(depth, width, height);
+
+		// Find surface area in inches (approximate)
+		var surfaceInches = surfaceCm / 6.4516;
 
 		// Find glass cost
 		if (height > 25) {
-			surfaceCost = surface * glass6mm;
+			surfaceCost = surfaceCm * glass6mm;
 			thickness = "6mm";
 		} else {
-			surfaceCost = surface * glass4mm;
+			surfaceCost = surfaceCm * glass4mm;
 			thickness = "4mm";
 		};
 
@@ -140,7 +143,7 @@ btnCalcCost.onclick = function() {
 		var glueCost = calcGlueCost(depth, width, height) * glue;
 
 		// Find labour cost
-		var labourCost = surface / labour;
+		var labourCost = surfaceCm / labour;
 
 		// Find subtotal
 		var subtotal = surfaceCost + glueCost + labourCost;
@@ -155,7 +158,7 @@ btnCalcCost.onclick = function() {
 		var capacityGallons = (capacityLitres / 3.785).toFixed(2);
 
 		// Output information to paragraph
-		output.innerHTML = "<strong>Total Cost: $" + total + "</strong> (incl. GST)<br>Surface Area: " + surface.toLocaleString() + " cm<sup>2</sup><br>Capacity: " + capacityLitres.toLocaleString() + " L (" + capacityGallons.toLocaleString() + " gal)";
+		output.innerHTML = "<strong>Total Cost: $" + total + "</strong> (incl. GST)<br>Surface Area: " + surfaceCm.toLocaleString() + " cm<sup>2</sup> (" + surfaceInches.toLocaleString() + " in<sup>2</sup>)<br>Capacity: " + capacityLitres.toLocaleString() + " L (" + capacityGallons.toLocaleString() + " gal)";
 
 		//alert("depth="+depth+", width="+width+", height="+height);
 
